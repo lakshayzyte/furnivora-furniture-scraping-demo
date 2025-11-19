@@ -1,8 +1,8 @@
 // src/utils/captchaLogic.js
 
 const STORAGE_KEY = 'furnivora_captcha_passed_v1';
-const TTL_MS = 500 * 60 * 1000; // 5 minutes
-const RANDOM_FORCE_PERCENT = 6; // 6% chance
+const TTL_MS = 50 * 60 * 1000; // 5 minutes
+const RANDOM_FORCE_PERCENT = 60; // 6% chance
 
 export const checkCaptchaStatus = () => {
   try {
