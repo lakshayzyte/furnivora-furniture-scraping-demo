@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from 'react-simple-captcha';
 import { 
-  Dialog, DialogTitle, DialogContent, DialogActions, 
+  Dialog, DialogTitle, DialogContent, 
   Button, TextField, Typography, Box 
 } from '@mui/material';
 import { setCaptchaVerified } from '../utils/captchaLogic';
@@ -14,26 +14,38 @@ import { setCaptchaVerified } from '../utils/captchaLogic';
 export default function GlobalCaptcha({ onVerified }) {
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
-  const inputRef = useRef(null);
 
   useEffect(() => {
-    // Initialize captcha engine
-    try {
-      loadCaptchaEnginge(6);
-    } catch (err) {
-      console.error("Captcha load error", err);
-    }
+    // FIX: Wait 350ms for the Dialog to fully render in the DOM
+    // before trying to draw the canvas.
+    const timer = setTimeout(() => {
+      try {
+        loadCaptchaEnginge(6);
+      } catch (err) {
+        console.error("Captcha load error", err);
+      }
+    }, 350);
+
+    // Cleanup timer to prevent memory leaks
+    return () => clearTimeout(timer);
   }, []);
 
   const handleValidate = (e) => {
     e.preventDefault();
+
+    // Prevent validating if the user hasn't typed anything
+    if (!input) {
+      setError('Please enter the captcha characters.');
+      return;
+    }
+
     if (validateCaptcha(input)) {
       setCaptchaVerified(); // Save to local storage
       onVerified(); // TELL PARENT WE ARE DONE
     } else {
       setError('Captcha incorrect. Please try again.');
       setInput('');
-      // Reload captcha on fail
+      // Reload captcha on fail so user gets a new one
       try { loadCaptchaEnginge(6); } catch(e){} 
     }
   };

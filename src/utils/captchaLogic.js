@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = 'furnivora_captcha_passed_v1';
 const TTL_MS = 50 * 60 * 1000; // 5 minutes
-const RANDOM_FORCE_PERCENT = 60; // 6% chance
+const RANDOM_FORCE_PERCENT = 60; // 60% chance
 
 export const checkCaptchaStatus = () => {
   try {
