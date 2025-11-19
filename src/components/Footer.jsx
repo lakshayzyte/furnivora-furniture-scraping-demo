@@ -17,7 +17,7 @@ const Footer = () => {
         </Grid>
         <Box sx={{ mt: 4, pt: 4, borderTop: 1, borderColor: 'divider' }}>
           <Typography variant="body2" color="text.secondary" align="center">
-            © 2024 Furnivora. All rights reserved.
+            © 2025 Furnivora. All rights reserved.
           </Typography>
         </Box>
       </Container>

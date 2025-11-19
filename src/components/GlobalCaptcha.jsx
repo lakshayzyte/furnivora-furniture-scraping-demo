@@ -17,8 +17,8 @@ import Box from '@mui/material/Box';
 
 // storage key and TTL/random settings
 const STORAGE_KEY = 'furnivora_captcha_passed_v1';
-const TTL_MS = 5 * 60 * 1000; // 5 minutes
-const RANDOM_FORCE_PERCENT = 60; // 60% chance to force captcha even if within TTL
+const TTL_MS = 500 * 60 * 1000; // 5 minutes
+const RANDOM_FORCE_PERCENT = 6; // 60% chance to force captcha even if within TTL
 
 /**
  * GlobalCaptcha (MUI Dialog)
