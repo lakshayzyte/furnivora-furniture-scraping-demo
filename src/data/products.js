@@ -35,10 +35,13 @@ const generateProducts = () => {
 
   categories.forEach(category => {
     for (let i = 1; i <= 40; i++) {
-      const brand = brands[Math.floor(Math.random() * brands.length)];
+      // const brand = brands[Math.floor(Math.random() * brands.length)];
+      const brand = brands[(i - 1) % brands.length];
       const name = `${category} ${brand} Model ${i}`;
-      const rating = (Math.random() * 2 + 3).toFixed(1); // 3.0 to 5.0
-      const price = Math.floor(Math.random() * 2000 + 100); // $100 to $2100
+      // const rating = (Math.random() * 2 + 3).toFixed(1); // 3.0 to 5.0
+      const rating = (Math.random() * 2 + 3).toFixed(1);
+      // const price = Math.floor(Math.random() * 2000 + 100); // $100 to $2100
+      const price = Math.floor(Math.random() * 2000 + 100);
       const slug = `${category.toLowerCase().replace(/\s+/g, '-')}-${brand.toLowerCase()}-${i}`;
 
       products.push({
